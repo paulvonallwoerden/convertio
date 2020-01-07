@@ -141,6 +141,20 @@ class Converter {
   }
 
   /**
+   * Synonym for .cancelConversion();
+   */
+  public deleteFile() {
+    return this.cancelConversion();
+  }
+
+  /**
+   * cancelConversion
+   */
+  public cancelConversion() {
+    return this.requester.
+  }
+
+  /**
    * Format a ConvertOptions object into a native javascript object.
    * With matching keys for the API.
    *

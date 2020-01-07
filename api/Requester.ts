@@ -30,6 +30,14 @@ class Requester {
     });
   }
 
+  public delete(path: string, options?: request.CoreOptions): Promise<object> {
+    return this.doRequest(path, {
+      ...this.defaultOptions,
+      ...options,
+      method: "DELETE"
+    });
+  }
+
   private doRequest(
     path: string,
     options: request.CoreOptions
