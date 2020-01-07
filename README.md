@@ -58,7 +58,3 @@ api.convertFromUrl(url, "png", { callbackUrl: "https://example.com/webhook" });
 ## Roadmap
 
 - Add Direct File Upload For Conversion
-- Delete File/Cancel Conversion
-- List of Conversions
-- OCR-related Features
-- Multiple Output Formats in one conversion
