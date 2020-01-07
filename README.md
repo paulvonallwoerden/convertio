@@ -1,4 +1,4 @@
-# Convertio (An unoffical convertio.co api for nodejs)
+# Convertio (An unofficial convertio.co api for nodejs)
 
 Interact with the https://convertio.co API through nodejs! Super simple.
 
