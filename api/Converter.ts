@@ -143,15 +143,17 @@ class Converter {
   /**
    * Synonym for .cancelConversion();
    */
-  public deleteFile() {
-    return this.cancelConversion();
+  public deleteFile(id: string) {
+    return this.cancelConversion(id);
   }
 
   /**
-   * cancelConversion
+   * Cancel a conversion and delete the corresponding file.
+   *
+   * @param id The id of the conversion
    */
-  public cancelConversion() {
-    return this.requester.
+  public cancelConversion(id: string): Promise<any> {
+    return this.requester.delete(`/convert/${id}`).then(() => {});
   }
 
   /**
