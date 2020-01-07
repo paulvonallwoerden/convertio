@@ -1,0 +1,64 @@
+# Convertio (An unoffical convertio.co api for nodejs)
+
+Interact with the https://convertio.co API through nodejs! Super simple.
+
+**Attention:** Because this module is very new, some of its api may change in the future.
+
+## Install
+
+`npm install convertio`
+
+## Usage Examples
+
+```
+const api = new Convertio("<< SECRET API KEY >>");
+```
+
+### Convert From Url
+
+```
+const url = "https://i.imgur.com/AEDX42G.jpg";
+
+api.convertFromUrl(url, "png");
+```
+
+### Convert File on Disk
+
+```
+const fs = require("fs");
+const buffer = fs.readFileSync("/path/to/file.pdf");
+
+api.convertFromBuffer(buffer, "docx");
+```
+
+### Get Status of Conversion
+
+```
+const status = await api.getStatus("CONVERSION ID");
+console.log(`Step ${status.step} is at ${status.stepPercent}%`);
+```
+
+### Write Converted File to Disk
+
+```
+const fs = require("fs");
+
+const buffer = await api.getFileContent("CONVERSION ID");
+fs.writeFileSync("/path/to/file.png", buffer);
+```
+
+### Add a Webhook to the Conversion
+
+```
+const url = "https://i.imgur.com/AEDX42G.jpg";
+
+api.convertFromUrl(url, "png", { callbackUrl: "https://example.com/webhook" });
+```
+
+## Roadmap
+
+- Add Direct File Upload For Conversion
+- Delete File/Cancel Conversion
+- List of Conversions
+- OCR-related Features
+- Multiple Output Formats in one conversion

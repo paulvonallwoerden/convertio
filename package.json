@@ -1,0 +1,27 @@
+{
+  "name": "convertio",
+  "version": "1.0.1",
+  "description": "Interface for the convertio API.",
+  "main": "dist/",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Paul von Allwörden",
+  "license": "ISC",
+  "dependencies": {
+    "@types/request": "^2.48.4",
+    "request": "^2.88.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/uelstudios/convertio.git"
+  },
+  "bugs": {
+    "url": "https://github.com/uelstudios/convertio/issues"
+  },
+  "keywords": [
+    "convertio",
+    "convert",
+    "api"
+  ]
+}
