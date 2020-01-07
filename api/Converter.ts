@@ -4,6 +4,8 @@ import OutputFormat from "./OutputFormat";
 import ConvertOptions from "./ConvertOptions";
 import ConversionStatus from "./ConversionStatus";
 import Conversion from "./Conversion";
+import ConversionItemStep from "./ConversionItemStep";
+import ConversionItemStatus from "./ConversionItemStatus";
 
 class Converter {
   private apiKey: string;
@@ -99,6 +101,43 @@ class Converter {
     return this.requester
       .get(`/convert/${id}/dl/base64`)
       .then(({ data }: any) => Buffer.from(data.content, "base64"));
+  }
+
+  /**
+   * Get a list of conversions filtered by status.
+   *
+   * @param filter The status to filter the conversions by.
+   * @param limit The maximum number of conversions to return.
+   * @returns A list of conversions.
+   */
+  public listConversions(
+    filter:
+      | ConversionItemStep
+      | "all"
+      | "uploading"
+      | "converting"
+      | "finished"
+      | "failed" = "all",
+    limit?: number
+  ): Promise<Array<ConversionItemStatus>> {
+    return this.requester
+      .post("/convert/list", {
+        apikey: this.apiKey,
+        status: filter,
+        count: limit
+      })
+      .then(({ data }: any) => data)
+      .then((items: any[]) =>
+        items.map((itm: any) => ({
+          id: itm.id,
+          status: itm.status,
+          minutes: itm.minutes,
+          inputFormat: itm.inputformat,
+          outputFormat: itm.outputformat,
+          fileName: itm.filename,
+          error: itm.error
+        }))
+      );
   }
 
   /**
