@@ -1,6 +1,6 @@
 {
   "name": "convertio",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "Interface for the convertio API.",
   "main": "dist/",
   "scripts": {
