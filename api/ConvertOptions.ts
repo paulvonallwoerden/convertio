@@ -1,10 +1,10 @@
 import OcrSettings from "./OcrSettings";
 
 interface ConvertOptions {
-  fileName: string | undefined;
-  callbackUrl: string | undefined;
-  ocrEnabled: boolean | undefined;
-  ocrSettings: OcrSettings | undefined;
+  fileName?: string;
+  callbackUrl?: string;
+  ocrEnabled?: boolean;
+  ocrSettings?: OcrSettings;
 }
 
 export default ConvertOptions;
