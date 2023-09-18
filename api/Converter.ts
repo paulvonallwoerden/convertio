@@ -1,5 +1,4 @@
 import Requester from "./Requester";
-import request = require("request");
 import OutputFormat from "./OutputFormat";
 import ConvertOptions from "./ConvertOptions";
 import ConversionStatus from "./ConversionStatus";
@@ -14,8 +13,7 @@ class Converter {
   constructor(apiKey: string) {
     this.apiKey = apiKey;
 
-    const options: request.CoreOptions = {};
-    this.requester = new Requester("https://api.convertio.co", options);
+    this.requester = new Requester("https://api.convertio.co", {});
   }
 
   /**
