@@ -1,4 +1,4 @@
-import request from "request";
+import axios from "axios";
 
 class Requester {
   private apiBaseUrl: string;
@@ -9,51 +9,35 @@ class Requester {
     this.defaultOptions = defaultOptions;
   }
 
-  public get(path: string, options?: request.CoreOptions): Promise<object> {
-    return this.doRequest(path, {
+  public async get(path: string, options?: object): Promise<object> {
+    const response = await axios.get(this.apiBaseUrl + path, {
       ...this.defaultOptions,
       ...options,
-      method: "GET"
     });
+
+    return response.data;
   }
 
-  public post(
-    path: string,
-    body: object,
-    options?: request.CoreOptions
-  ): Promise<object> {
-    return this.doRequest(path, {
+  public async post(path: string, body: object, options?: object): Promise<object> {
+    const response = await axios.post(
+      this.apiBaseUrl + path,
+      body,
+      {
+        ...this.defaultOptions,
+        ...options,
+      }
+    );
+
+    return response.data;
+  }
+
+  public async delete(path: string, options?: object): Promise<object> {
+    const response = await axios.delete(this.apiBaseUrl + path, {
       ...this.defaultOptions,
       ...options,
-      body: JSON.stringify(body),
-      method: "POST"
     });
-  }
 
-  public delete(path: string, options?: request.CoreOptions): Promise<object> {
-    return this.doRequest(path, {
-      ...this.defaultOptions,
-      ...options,
-      method: "DELETE"
-    });
-  }
-
-  private doRequest(
-    path: string,
-    options: request.CoreOptions
-  ): Promise<object> {
-    return new Promise((resolve, reject) =>
-      request(this.apiBaseUrl + path, options, (error, response, body) => {
-        if (error) return reject(error);
-        return resolve(body);
-      })
-    )
-      .then((rawBody: any) => JSON.parse(rawBody))
-      .then((body: any) => {
-        // The .status field is defined by the convertio API
-        if (body.status === "ok") return body;
-        else throw body.error;
-      });
+    return response.data;
   }
 }
 
